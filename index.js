@@ -67,8 +67,12 @@ export default {
             }
           }
 
-          return Object.keys(value.urls).every(key => LOADER_URL_KEYS.includes(key))
+          if (!Object.keys(value.urls).every(key => LOADER_URL_KEYS.includes(key))) {
+            return false
+          }
         }
+
+        return true
       },
     },
   },
