@@ -1,0 +1,30 @@
+{
+  "name": "@jurca/szn-select-vue",
+  "version": "0.0.0",
+  "description": "Szn-select integration for Vue.js projects.",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint --max-warnings=0 *.js && jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jurca/szn-select-vue.git"
+  },
+  "keywords": [
+    "vue",
+    "vue.js",
+    "szn",
+    "seznam",
+    "seznam.cz",
+    "select",
+    "szn-select",
+    "a11y",
+    "accessibility"
+  ],
+  "author": "Martin Jurča <martin.jurca@firma.seznam.cz>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jurca/szn-select-vue/issues"
+  },
+  "homepage": "https://github.com/jurca/szn-select-vue#readme"
+}
