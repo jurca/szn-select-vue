@@ -92,6 +92,7 @@ export default {
     const selectAttributes = Object.assign({}, this.$props)
     selectAttributes['aria-label'] = selectAttributes.ariaLabel
     delete selectAttributes.ariaLabel
+    delete selectAttributes.loaderOptions
 
     return (
       h('szn-select', {attrs: rootAttrs, ref: 'root', on: {[READY_EVENT]: this.onSelectReady}}, [
