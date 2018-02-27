@@ -7,6 +7,11 @@ if (!Vue.config.ignoredElements.includes('szn-select')) {
 }
 
 const READY_EVENT = 'szn-select:ready'
+const LOADER_FLAGS = [
+  'enable',
+  'useEmbeddedLoader',
+  'useAsyncLoading',
+]
 const LOADER_URL_KEYS = [
   'package',
   'loader',
@@ -53,8 +58,7 @@ export default {
         return Object.assign({}, DEFAULT_LOADER_OPTIONS)
       },
       validator(value) {
-        const booleanKeys = ['enable', 'useEmbeddedLoader', 'useAsyncLoading']
-        for (const key of booleanKeys) {
+        for (const key of LOADER_FLAGS) {
           if (Object.prototype.hasOwnProperty.call(value, key) && typeof value[key] !== 'boolean') {
             return false
           }
