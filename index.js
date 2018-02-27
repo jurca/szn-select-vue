@@ -105,6 +105,10 @@ export default {
   },
 
   mounted() {
+    if (this.$refs.root.isReady && this.$refs.root.requestedAttributes) {
+      this._handleAttributesUpdate(this.$refs.root.requestedAttributes)
+    }
+
     if (sznSelectLoadingBegun) {
       return
     }
@@ -145,10 +149,10 @@ export default {
 
   methods: {
     onSelectReady(event) {
-      this._handleAttributesChange(event.detail.attributes)
+      this._handleAttributesUpdate(event.detail.attributes)
     },
 
-    _handleAttributesChange(requestedAttributeUpdate) {
+    _handleAttributesUpdate(requestedAttributeUpdate) {
       const sznSelectAttrs = this._processAttributes(requestedAttributeUpdate)
       this.sznSelectAttrs = sznSelectAttrs
     },
