@@ -4,7 +4,10 @@
   "description": "Szn-select integration for Vue.js projects.",
   "main": "index.js",
   "scripts": {
-    "test": "eslint --max-warnings=0 *.js && jest"
+    "test": "eslint --max-warnings=0 *.js && jest",
+    "build": "gulp",
+    "prepublishOnly": "echo Run \\'npm run publish-package\\' instead && exit 1",
+    "publish-package": "git push && git push --tags && npm run build && npm publish --access public --ignore-scripts dist"
   },
   "repository": {
     "type": "git",
@@ -26,5 +29,19 @@
   "bugs": {
     "url": "https://github.com/jurca/szn-select-vue/issues"
   },
-  "homepage": "https://github.com/jurca/szn-select-vue#readme"
+  "homepage": "https://github.com/jurca/szn-select-vue#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "del": "^3.0.0",
+    "eslint": "^4.18.1",
+    "eslint-config-fbjs-opensource": "^1.0.0",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-babel": "^7.0.1",
+    "gulp-replace": "^0.6.1"
+  },
+  "peerDependencies": {
+    "vue": "2.x"
+  }
 }
