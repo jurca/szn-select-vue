@@ -222,3 +222,52 @@ The loader options are:
     runtime. This is used on modern browsers that support the
     [custom elements](https://mdn.io/Window/customElements) API if no
     dependencies are loaded yet.
+
+## Synchronous szn-select element loading
+
+The downside of letting the `<SznSelect>` component handle all the work is
+that the implementation of the underlying `<szn-select>` element is loaded
+asynchronously. This may lead to a
+[FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) or seeing the
+native `<select>` element with the fallback styles applied for a brief moment.
+
+This can be improved by using synchronous loading of the `<szn-select>`
+element by injecting the loader into the page ourselves (notice there is no
+`async` nor `defer` attribute):
+
+```html
+<script src="https://unpkg.com/@jurca/szn-select@<VERSION>/loader.min.js"></script>
+```
+
+Since the script would be executed synchronously, the loader will inject the
+bundle using `document.write()`, which will load the `<szn-select>` element
+before the `DOMContentLoaded` event occurs. The `<SznSelect>` component will
+recognize that the `szn-select` element has been already loaded and will not
+inject the loader repeatedly.
+
+The downside to the example above is that the script is loaded from another
+domain than your website, and Chrome will
+[block](https://www.chromestatus.com/feature/5718547946799104) the loading the
+of bundle on 2G connections. This can be resolved by hosting the files
+yourselves (see below).
+
+## Self-hosted deployment
+
+For some reason or another it might be practical for you to host the bundle
+files yourselves. First, start by installing the `szn-select` package:
+
+```
+npm install --save @jurca/szn-select@<VERSION>
+```
+
+Next, make the files in the npm module available in your project over HTTP as
+static assets.
+
+The final step depends on your preferred way of loading the bundle:
+* if you leave the bundle loading to the `<SznSelect>` component, provide the
+  `loaderOptions` prop with the `urls` object. Having the `urls.package`
+  option is usually enough, point it to your local URL at which you made the
+  `szn-select`'s files available.
+* if you are using synchronous loading (see above), use
+  [these data attributes](https://www.npmjs.com/package/@jurca/szn-select#usage-on-static-or-server-rendered-websites)
+  on the loader's `<script>` element.
