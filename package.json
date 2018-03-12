@@ -1,6 +1,6 @@
 {
   "name": "@jurca/szn-select-vue",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Szn-select integration for Vue.js projects.",
   "main": "index.js",
   "scripts": {
