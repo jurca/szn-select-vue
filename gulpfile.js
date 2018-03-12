@@ -16,6 +16,7 @@ function clean() {
 
 function copyMetaFiles() {
   return gulp.src(['./package.json', './README.md', './LICENSE'])
+    .pipe(replace('<VERSION>', compatibleVersionRange))
     .pipe(gulp.dest('./dist'))
 }
 
