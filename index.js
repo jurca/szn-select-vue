@@ -52,6 +52,9 @@ export default {
     'aria-label': {
       type: String,
     },
+    'dropdownClassName': {
+      type: String,
+    },
     'loaderOptions': {
       type: Object,
       default() {
@@ -107,6 +110,7 @@ export default {
   mounted() {
     if (this.$refs.root.isReady && this.$refs.root.requestedAttributes) {
       this._handleAttributesUpdate(this.$refs.root.requestedAttributes)
+      this._updateDropdownClassname()
     }
 
     if (sznSelectLoadingBegun) {
@@ -143,6 +147,10 @@ export default {
     document.head.appendChild(loaderScript)
   },
 
+  updated() {
+    this._updateDropdownClassname()
+  },
+
   beforeDestroy() {
     // remove listener
   },
@@ -155,6 +163,10 @@ export default {
     _handleAttributesUpdate(requestedAttributeUpdate) {
       const sznSelectAttrs = this._processAttributes(requestedAttributeUpdate)
       this.sznSelectAttrs = sznSelectAttrs
+    },
+
+    _updateDropdownClassname() {
+      this.$refs.root.dropdownClassName = this.dropdownClassName
     },
 
     _processAttributes(attributesUpdate) {
