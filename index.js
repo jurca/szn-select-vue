@@ -33,6 +33,11 @@ const DEFAULT_LOADER_OPTIONS = {
   },
 }
 
+const SZN_SELECT_PROPERTIES = [
+  'minBottomSpace',
+  'dropdownClassName',
+  'dropdownContainer',
+]
 let sznSelectLoadingBegun = false
 
 export default {
@@ -52,8 +57,14 @@ export default {
     'aria-label': {
       type: String,
     },
+    'minBottomSpace': {
+      type: Number,
+    },
     'dropdownClassName': {
       type: String,
+    },
+    'dropdownContainer': {
+      type: Node,
     },
     'loaderOptions': {
       type: Object,
@@ -110,7 +121,7 @@ export default {
   mounted() {
     if (this.$refs.root.isReady && this.$refs.root.requestedAttributes) {
       this._handleAttributesUpdate(this.$refs.root.requestedAttributes)
-      this._updateDropdownClassname()
+      this._updateSznSelectProperties()
     }
 
     if (sznSelectLoadingBegun) {
@@ -148,7 +159,7 @@ export default {
   },
 
   updated() {
-    this._updateDropdownClassname()
+    this._updateSznSelectProperties()
   },
 
   beforeDestroy() {
@@ -165,8 +176,12 @@ export default {
       this.sznSelectAttrs = sznSelectAttrs
     },
 
-    _updateDropdownClassname() {
-      this.$refs.root.dropdownClassName = this.dropdownClassName
+    _updateSznSelectProperties() {
+      for (const sznSelectProperty of SZN_SELECT_PROPERTIES) {
+        if (sznSelectProperty in this.$props) {
+          this.$refs.root[sznSelectProperty] = this.$props[sznSelectProperty]
+        }
+      }
     },
 
     _processAttributes(attributesUpdate) {
