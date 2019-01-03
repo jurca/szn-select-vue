@@ -64,7 +64,7 @@ export default {
       type: String,
     },
     'dropdownContainer': {
-      type: Node,
+      type: typeof Node !== 'undefined' ? Node : Object,
     },
     'loaderOptions': {
       type: Object,
