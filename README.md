@@ -149,7 +149,7 @@ a common pattern used is using a higher-order component, as seen below:
 </template>
 
 <script>
-import SznSelect from '@jurca/szn-select-react'
+import SznSelect from '@jurca/szn-select-vue'
 
 const LOADER_OPTIONS = {
   // loaders options go here, see below for details
