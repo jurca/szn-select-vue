@@ -1,5 +1,5 @@
 {
-  "name": "@jurca/szn-select-vue",
+  "name": "@seznam/szn-select-vue",
   "version": "1.4.1",
   "description": "Szn-select integration for Vue.js projects.",
   "main": "index.js",
